@@ -8,6 +8,11 @@ The version in `SKILL.md` is the authoritative one.
 
 ## [Unreleased]
 
+### Added
+
+- `CONTRIBUTING.md`: two-lane contribution model (fast lane for corrections and translations, slow lane for rule changes), seven invariants, and a definition of done.
+- `scripts/validate-skill.sh`: executable format contract — checks `name` against the directory, referenced and orphaned files, absolute paths, the nine-rule count, `SKILL.md` length, obvious secrets, and the `[Unreleased]` section.
+
 ## [1.0.1] - 2026-11-04
 
 ### Added

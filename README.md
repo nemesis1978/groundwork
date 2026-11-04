@@ -243,6 +243,18 @@ Version history: [CHANGELOG.md](CHANGELOG.md).
 
 ---
 
+## Contributing
+
+Corrections and complete translations are welcome as pull requests. Changes to the nine rules, the three paths, or the default stack need an issue first — the reasoning is in [CONTRIBUTING.md](CONTRIBUTING.md).
+
+Every pull request must pass the format contract:
+
+```bash
+bash scripts/validate-skill.sh
+```
+
+It checks the things that break silently otherwise: `name` matching the directory, references that exist and are not orphaned, absolute paths, the rule count, `SKILL.md` length, obvious secrets.
+
 ## Attribution
 
 Derived from [vibe-coding-toolkit](https://github.com/soumatheusgomes/vibe-coding-toolkit) by **Matheus Gomes**, MIT licensed. This repository contains no upstream code: it is a distillation with references, plus original rules, routing, and documentation.
