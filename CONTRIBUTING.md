@@ -110,6 +110,8 @@ If your contribution derives from another project, say so in the pull request an
 
 ## Local workflow
 
+Clone into a folder named `groundwork`: the validator compares the frontmatter `name` with the directory name, because that is how hosts resolve a skill. Cloning into `my-folder` fails that check — correctly, but it is not a defect in the repository.
+
 ```bash
 git clone https://github.com/nemesis1978/groundwork.git
 cd groundwork

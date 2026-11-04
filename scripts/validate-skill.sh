@@ -21,7 +21,7 @@ if [ -f "$DIR/SKILL.md" ]; then ok "SKILL.md present"; else fail "SKILL.md missi
 if head -1 "$DIR/SKILL.md" | grep -q '^---$'; then ok "frontmatter opens on line 1"; else fail "frontmatter must open on line 1"; fi
 
 FM_NAME="$(sed -n '1,/^---$/p' "$DIR/SKILL.md" | sed -n '2,$p' | grep -m1 '^name:' | sed 's/^name:[[:space:]]*//;s/[[:space:]]*$//')"
-if [ "$FM_NAME" = "$NAME" ]; then ok "name '$FM_NAME' matches directory"; else fail "name '${FM_NAME:-missing}' must equal directory name '$NAME'"; fi
+if [ "$FM_NAME" = "$NAME" ]; then ok "name '$FM_NAME' matches directory"; else fail "name '${FM_NAME:-missing}' must equal directory name '$NAME' — rename the folder to '${FM_NAME:-<name>}' (hosts resolve skills by folder name)"; fi
 
 # 3. Description present and sane
 DESC="$(sed -n '1,/^---$/p' "$DIR/SKILL.md" | sed -n '2,$p' | grep -m1 '^description:' | sed 's/^description:[[:space:]]*//')"
