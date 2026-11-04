@@ -1,39 +1,56 @@
-# Progetto esistente: diagnosi, piano, lotti
+# Existing project: diagnosis, plan, batches
 
-Estratto da `docs/prompts/12-existing-project-setup.md` e `docs/04-project-bootstrap.md`.
+Extracted from `docs/prompts/12-existing-project-setup.md` and `docs/04-project-bootstrap.md`.
 
-## Regola base
+## Base rule
 
-Non si applica il bootstrap a un progetto esistente come se fosse nuovo. Si preserva cio' che funziona e si adotta solo cio' che porta un beneficio misurabile.
+Bootstrap is not applied to an existing project as if it were new. Preserve what works and adopt only what brings a measurable benefit.
 
-## Fase 1 — Diagnosi read-only
+## Phase 1 — Read-only diagnosis
 
-1. Stack reale: framework, versioni, runtime, package manager, database, test, lint.
-2. Comandi che funzionano davvero (provati, non dedotti dal README).
-3. Mappa dei moduli e degli entry point.
-4. Punti fragili: file enormi, warning, dipendenze non usate, segreti nel codice, test assenti o rotti.
-5. Modifiche locali non committate: vanno salvate prima di qualsiasi intervento.
+1. Real stack: framework, versions, runtime, package manager, database, tests, lint.
+2. Commands that actually work (executed, not inferred from the README).
+3. Map of modules and entry points.
+4. Fragile points: oversized files, warnings, unused dependencies, secrets in code, missing or broken tests.
+5. Uncommitted local changes: save them before any intervention.
 
-Output: una scheda breve e verificabile. Nessuna modifica in questa fase.
+Output: a short, verifiable report. No modifications in this phase.
 
-## Fase 2 — PRODUCT.md ricostruito
+## Phase 2 — PRODUCT.md rebuilt
 
-Dal codice, non dalle intenzioni: cosa fa il prodotto oggi, per chi, quali flussi esistono, quali sono morti. I disallineamenti tra documentazione e codice sono un finding, non un dettaglio.
+From the code, not from intentions: what the product does today, for whom, which flows exist, which are dead. Misalignment between documentation and code is a finding, not a detail.
 
-## Fase 3 — Piano per componente
+## Phase 3 — Decision per component
 
-Per ogni componente del catalogo una decisione esplicita:
+One explicit decision for every catalog component:
 
-| Decisione | Quando |
+| Decision | When |
 |---|---|
-| Adotta | manca e il prodotto lo richiede |
-| Equivalente presente | esiste gia' un modo di fare la stessa cosa |
-| Scarta | non serve a questo prodotto, con motivo scritto |
+| Adopt | it is missing and the product requires it |
+| Equivalent present | another way of doing the same thing already exists |
+| Reject | this product does not need it, with the reason written down |
 
-Il piano deve stare in una pagina. Se serve piu' spazio, e' un progetto, non un piano.
+The plan must fit on one page. If it needs more, it is a project, not a plan.
 
-## Fase 4 — Lotti piccoli
+## Phase 4 — Small batches
 
-- Un lotto = una modifica verificabile con il suo comando di verifica.
-- Nessun lotto misto (refactor + feature + config insieme).
-- Dopo ogni lotto: stato reale, non 
+- One batch = one change with its own verification command.
+- No mixed batches (refactor + feature + config together).
+- After each batch: real state, not "mostly done".
+- If a batch fails twice, stop and report instead of retrying blindly.
+
+## Phase 5 — Before/after comparison
+
+Minimum metrics to report: lint warning count, files over the limit, passing tests, build time, removed dependencies. Without numbers it is not an improvement, it is an opinion.
+
+## Phase 6 — Handoff
+
+If work remains open: objective, real state, decisions with reasons, files touched, blockers, executable next steps, constraints not to break.
+
+## Typical mistakes in this phase
+
+- Migrating the stack "while we are here".
+- Adding an ORM where the team chose another.
+- Introducing an unrequested UI kit.
+- Declaring a batch finished without running its verification.
+- Rewriting SQL migrations to make them look idempotent.

@@ -1,23 +1,23 @@
-# Bootstrap progetto nuovo (Next.js di riferimento)
+# Bootstrapping a new project (Next.js reference)
 
-Estratto operativo da `docs/04-project-bootstrap.md` del toolkit locale.
-Repo: `<TOOLKIT>`
+Operational extract of `docs/04-project-bootstrap.md` from the local toolkit.
+Toolkit root: `<TOOLKIT>`
 
-## 0. Prima di toccare qualsiasi cosa
+## 0. Before touching anything
 
-- Individua: directory di destinazione, istruzioni esistenti (`AGENTS.md`, `CLAUDE.md`, `README`), client in uso, runtime, package manager, file gia' presenti, modifiche locali non committate.
-- Se la destinazione e' il toolkit stesso, crea una directory sorella per il prodotto.
-- Usa una sola revisione del toolkit per progetto.
+- Identify: destination directory, existing instructions (`AGENTS.md`, `CLAUDE.md`, `README`), client in use, runtime, package manager, files already present, uncommitted local changes.
+- If the destination is the toolkit itself, create a sibling directory for the product.
+- Use a single toolkit revision per project.
 
 ## 1. PRODUCT.md
 
-Da `templates/product.md.template`. Contenuto minimo: problema, pubblico, obiettivo, flussi, MVP, requisiti, vincoli, criteri di accettazione.
-Le assunzioni reversibili si dichiarano; i dati esterni mancanti restano aperti, non si inventano.
+From `templates/product.md.template`. Minimum content: problem, audience, objective, flows, MVP, requirements, constraints, acceptance criteria.
+Reversible assumptions are stated; missing external facts stay open instead of being invented.
 
-## 2. Scaffold ufficiale
+## 2. Official scaffold
 
-Verifica al momento: `create-next-app --help`, versioni stabili sul registry, peer dependencies.
-Default: App Router, TypeScript strict, Tailwind, ESLint, `src/`, alias `@/*`.
+Check at execution time: `create-next-app --help`, stable versions on the registry, peer dependencies.
+Defaults: App Router, strict TypeScript, Tailwind, ESLint, `src/`, `@/*` alias.
 
 ```bash
 npx --yes create-next-app@latest my-project --typescript --tailwind --eslint --app \
@@ -25,51 +25,51 @@ npx --yes create-next-app@latest my-project --typescript --tailwind --eslint --a
   --no-react-compiler --no-cache-components --no-agent-feedback --yes
 ```
 
-- I flag negativi evitano preferenze salvate; verificane il supporto attuale.
-- Destinazione non vuota: scaffold in directory temporanea, poi merge senza sovrascrivere.
-- Non rigenerare un'applicazione esistente. Git solo se serve, senza remote e senza pubblicare.
+- Negative flags avoid saved preferences; verify their current support.
+- Non-empty destination: scaffold in a temporary directory, then merge without overwriting.
+- Never regenerate an existing application. Initialize Git only if needed, with no remote and no publishing.
 
-## 3. Core del progetto
+## 3. Project core
 
-Drizzle + PostgreSQL e' il default per la persistenza nuova. Gli stack esistenti non si migrano.
+Drizzle + PostgreSQL is the default for new persistence. Existing stacks are not migrated.
 
 ```bash
 npm install drizzle-orm pg server-only zod pino clsx tailwind-merge
 npm install -D drizzle-kit @types/pg @next/env vitest eslint-plugin-drizzle @types/node@24
 ```
 
-Adatta al package manager. `@types/node` segue il runtime reale; `@next/env` segue la versione di Next.
-Niente `--force`/`--legacy-peer-deps`.
+Adapt to the package manager. `@types/node` follows the real runtime; `@next/env` follows the Next.js version.
+No `--force` / `--legacy-peer-deps`.
 
-Poi copia `templates/next/` nell'app rimuovendo il suffisso `.example` **tranne** `.env.example`.
-Il template include: `src/lib/env.ts` (validazione Zod), `src/lib/logger.ts` (Pino con redazione), `src/db/index.ts` (pool lazy), test Vitest che non richiedono credenziali.
+Then copy `templates/next/` into the app, stripping the `.example` suffix **except** for `.env.example`.
+The template includes: `src/lib/env.ts` (Zod validation), `src/lib/logger.ts` (Pino with redaction), `src/db/index.ts` (lazy pool), and Vitest tests that need no credentials.
 
-Schema DB: parte vuoto, niente tabelle finte. `getDb()` valida l'URL e crea il pool lazy: la build iniziale non richiede database.
-Prodotto senza persistenza: ometti moduli e dipendenze DB, usa il profilo lint leggero e documenta il motivo.
+Database schema starts empty, with no fictional tables. `getDb()` validates the URL and creates the pool lazily: the initial build needs no database.
+Product without persistence: omit the database modules and dependencies, use the lightweight lint profile, and document the reason.
 
-## 4. Skill del progetto
+## 4. Project skills
 
-Solo quelle che servono, senza `--all`. Verifica il `name` nel frontmatter, non il nome della directory.
-Su Windows o senza link portabili usa la modalita' copia. Registra `skills-lock.json`.
-Installare una skill di deploy non pubblica nulla.
+Only the ones the project needs, never `--all`. Check the frontmatter `name`, not the directory name.
+On Windows or without portable links, use copy mode. Record `skills-lock.json`.
+Installing a deployment skill publishes nothing.
 
-## 5. Documentazione e client
+## 5. Documentation and clients
 
-Dal manifest `templates/project-docs/manifest.json`: **4 file in root** + **5 in `docs/`**.
-Riempi con fatti di prodotto e codice, rimuovi campi inutilizzati e placeholder.
-`CLAUDE.md` importa `AGENTS.md` invece di duplicarne le regole.
+From `templates/project-docs/manifest.json`: **4 files in root** + **5 in `docs/`**.
+Fill them with product and code facts; remove unused fields and placeholders.
+`CLAUDE.md` imports `AGENTS.md` instead of duplicating its rules.
 
-Contratto di memoria portabile: memoria nativa o indice breve verso i documenti canonici, meccanismo di caricamento reale, fonte, ultima verifica, trigger di invalidazione.
+Portable memory contract: native memory or a short index into canonical documents, the actual loading mechanism, the source, the last verification, and the invalidation triggers.
 
-## 6. Qualita'
+## 6. Quality
 
-- Preset Next.js/TypeScript + controlli async tipizzati.
-- Limite di 350 righe per file: oltre, refactor per responsabilita' (`docs/prompts/09-file-size-refactor.md`).
-- Comandi riproducibili nel README del progetto (install, dev, build, lint, test, typecheck).
+- Next.js/TypeScript presets plus typed async checks.
+- 350-line file limit: beyond that, refactor by responsibility (`docs/prompts/09-file-size-refactor.md`).
+- Reproducible commands in the project README (install, dev, build, lint, test, typecheck).
 
-## 7. Verifica e consegna
+## 7. Verification and handover
 
-- Build verde, lint pulito, test eseguibili **senza credenziali**.
-- Documentazione senza placeholder.
-- Evidenza riportata (comandi + esito reale), non dichiarazioni.
-- Elenco esplicito di cio' che resta aperto.
+- Green build, clean lint, tests runnable **without credentials**.
+- Documentation with no placeholders.
+- Evidence reported (commands + real output), not assertions.
+- An explicit list of what remains open.

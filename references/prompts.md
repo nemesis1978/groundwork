@@ -1,34 +1,34 @@
-# I 16 prompt del toolkit
+# The 16 toolkit prompts
 
-Percorso locale: `<TOOLKIT>/docs/prompts/`
-Ogni file e' autosufficiente: si incolla nel client e si adatta il contesto.
+Local path: `<TOOLKIT>/docs/prompts/`
+Every file is self-contained: paste it into the client and adapt the context.
 
-| # | File | Quando usarlo | Cosa produce |
+| # | File | When to use it | What it produces |
 |---|---|---|---|
-| 01 | `01-project-sanitation.md` | repo disordinato, prima di lavorarci | misura e riordino del codice |
-| 02 | `02-eslint-warning-burndown.md` | troppi warning accumulati | riduzione misurata dei warning, a lotti |
-| 03 | `03-multi-agent-code-review.md` | serve una review specializzata | review multi-prospettiva con finding |
-| 04 | `04-brainstorm-to-plan.md` | richiesta vaga da raffinare | piano vincolato prima del codice |
-| 05 | `05-parallel-wave-dispatch.md` | task indipendenti in parallelo | ondate con ownership dei file |
-| 06 | `06-memory-bootstrap.md` | contesto che si perde tra sessioni | contratto di memoria persistente |
-| 07 | `07-eslint-complete-setup.md` | serve una config lint avanzata | configurazione completa e motivata |
-| 08 | `08-eslint-quality-gates-install.md` | regole da copiare e misurare | quality gate installati con evidenza |
-| 09 | `09-file-size-refactor.md` | file troppo grandi | refactor per responsabilita' |
-| 10 | `10-development-environment-setup.md` | macchina da preparare | ambiente globale + manifest |
-| 11 | `11-next-project-bootstrap.md` | **progetto nuovo** | prodotto + fondazione configurata |
-| 12 | `12-existing-project-setup.md` | **progetto esistente** | setup completo con prima/dopo |
-| 13 | `13-security-review.md` | review di sicurezza | report privato, basato su evidenza |
-| 14 | `14-harness-evaluation.md` | verificare se le istruzioni funzionano | test usa-e-getta su istruzioni, recovery, review |
-| 15 | `15-harness-improvement.md` | migliorare il flusso di lavoro | adattamento nativo del metodo harness |
-| 16 | `16-security-audit.md` | audit approfondito **su richiesta** | 4 artefatti privati, lotti di remediation, checkpoint |
+| 01 | `01-project-sanitation.md` | messy repo, before working on it | measurement and code reorganisation |
+| 02 | `02-eslint-warning-burndown.md` | too many accumulated warnings | measured warning reduction, in batches |
+| 03 | `03-multi-agent-code-review.md` | a specialised review is needed | multi-perspective review with findings |
+| 04 | `04-brainstorm-to-plan.md` | vague request to refine | a constrained plan before code |
+| 05 | `05-parallel-wave-dispatch.md` | independent tasks in parallel | waves with file ownership |
+| 06 | `06-memory-bootstrap.md` | context lost between sessions | a persistent memory contract |
+| 07 | `07-eslint-complete-setup.md` | advanced lint config needed | complete, justified configuration |
+| 08 | `08-eslint-quality-gates-install.md` | rules to copy and measure | quality gates installed with evidence |
+| 09 | `09-file-size-refactor.md` | files too large | refactor by responsibility |
+| 10 | `10-development-environment-setup.md` | machine to prepare | global environment + manifest |
+| 11 | `11-next-project-bootstrap.md` | **new project** | product + configured foundation |
+| 12 | `12-existing-project-setup.md` | **existing project** | full setup with before/after |
+| 13 | `13-security-review.md` | security review | private, evidence-based report |
+| 14 | `14-harness-evaluation.md` | check whether instructions work | disposable tests on instructions, recovery, review |
+| 15 | `15-harness-improvement.md` | improve the working flow | native adaptation of the harness method |
+| 16 | `16-security-audit.md` | in-depth audit **on request** | 4 private artifacts, remediation batches, checkpoints |
 
-## Regole d'uso
+## Usage rules
 
-- **11** per un progetto nuovo, **12** per uno esistente, **10** per la macchina. Gli altri sono task puntuali.
-- **16 non si esegue mai automaticamente**: e' un task separato, solo su richiesta esplicita.
-- Un prompt alla volta. Accodarli produce risultati non verificabili.
-- Dopo ogni prompt: esito reale e file toccati, non un riassunto di intenti.
+- **11** for a new project, **12** for an existing one, **10** for the machine. The rest are focused tasks.
+- **16 is never run automatically**: it is a separate task, only on explicit request.
+- One prompt at a time. Queueing them produces results nobody can verify.
+- After every prompt: real outcome and files touched, not a summary of intentions.
 
-## Adattamento
+## Adaptation
 
-I prompt assumono un agente con accesso a terminale, filesystem e rete. Se un client non ha un tool citato (Context7, subagenti), il prompt va adattato dichiarando la sostituzione, senza fingere di averlo usato.
+The prompts assume an agent with terminal, filesystem, and network access. If a client lacks a cited tool (Context7, subagents), adapt the prompt and declare the substitution instead of pretending to have used it.

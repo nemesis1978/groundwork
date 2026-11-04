@@ -1,6 +1,6 @@
 ---
 name: groundwork
-version: 1.0.0
+version: 1.0.1
 author: Egix
 license: MIT
 description: Use when setting up a machine or bootstrapping a project.
@@ -14,110 +14,107 @@ metadata:
 
 # Groundwork
 
-Setup della macchina e bootstrap/upgrade di un progetto, con regole esplicite e verificabili.
-Distillata da [vibe-coding-toolkit](https://github.com/soumatheusgomes/vibe-coding-toolkit) (MIT) — opera derivata, non un fork.
-I template e i 16 prompt completi vivono nel repo originale: questa skill li indicizza e ne fissa le regole operative.
+Machine setup and project bootstrap/upgrade, with explicit and verifiable rules.
+Distilled from [vibe-coding-toolkit](https://github.com/soumatheusgomes/vibe-coding-toolkit) (MIT) — a derivative work, not a fork.
+Templates and the complete 16 prompts live upstream: this skill indexes them and fixes the operating rules.
 
-### Prerequisito: il toolkit sorgente
+### Prerequisite: the source toolkit
 
 ```bash
 git clone https://github.com/soumatheusgomes/vibe-coding-toolkit.git
 ```
 
-Nei percorsi di questa skill `<TOOLKIT>` è quella directory. Se il toolkit non è disponibile la skill resta usabile: le reference contengono i comandi essenziali, mentre i file `.template` vanno ricreati dal progetto.
+In this skill `<TOOLKIT>` is that directory. If the toolkit is unavailable the skill still works: the references carry the essential commands, while `.template` files are recreated from the project.
 
 ## When to Use
 
-Quando usarla:
+- A new machine or a toolchain to prepare.
+- A new project from scratch (Next.js by default, but adaptable).
+- An existing project to diagnose, configure, or repair.
+- Partial adoption: only one piece is needed (ESLint, security review, harness).
 
-- Macchina nuova o toolchain da preparare.
-- Progetto nuovo da zero (Next.js di default, ma adattabile).
-- Progetto esistente da diagnosticare, configurare o riparare.
-- Adozione parziale: serve solo un pezzo (ESLint, security review, harness).
+Do not use it for focused coding tasks: this skill sets up the environment and the working contract, it does not implement the feature.
 
-Non usarla per task puntuali di codice: qui si imposta l'ambiente e il contratto di lavoro, non si implementa la feature.
+## Non-negotiable rules
 
-## Regole non negoziabili
+1. **Product before foundation.** `PRODUCT.md` (problem, audience, flows, MVP, constraints, acceptance criteria) before any stack choice. Reversible assumptions are stated explicitly; what is missing stays pending, not invented.
+2. **Proportional.** Never install something just because it appears in the catalog. Every component receives an explicit decision: adopted, equivalent already present, or rejected with a reason.
+3. **Never migrate an existing stack as a side effect.** Bootstrap does not authorize changes to framework, ORM, bundler, or UI kit.
+4. **One toolkit revision per project.** Do not mix files from different revisions.
+5. **No secrets in plaintext.** `.env.local` ignored, `.env.example` versioned and free of credentials. Never `NEXT_PUBLIC_*` for secrets.
+6. **No `--force` / `--legacy-peer-deps`** to hide dependency conflicts: resolve them or document them.
+7. **Migrations only on an authorized destination**, never during build, import, or a request. No `db:push` in the standard flow.
+8. **No push, deploy, or publish** without an explicit request.
+9. **Verify before asserting.** Stable versions and channels (`latest` vs `@rc` / `@canary`) are checked at execution time, never assumed.
 
-1. **Prodotto prima della fondazione.** `PRODUCT.md` (problema, pubblico, flussi, MVP, vincoli, criteri di accettazione) prima di scegliere lo stack. Assunzioni reversibili esplicite; ciò che manca resta pendente, non inventato.
-2. **Proporzionale.** Non installare nulla solo perché compare nel catalogo. Ogni componente riceve una decisione esplicita: adottato, equivalente già presente, o scartato con motivo.
-3. **Mai migrare stack esistenti come effetto collaterale.** Il bootstrap non autorizza cambi di framework, ORM, bundler o UI kit.
-4. **Un solo revisione del toolkit per progetto.** Non mescolare file di revisioni diverse.
-5. **Nessun segreto in chiaro.** `.env.local` ignorato, `.env.example` versionato e senza credenziali. Mai `NEXT_PUBLIC_*` per i segreti.
-6. **Niente `--force` / `--legacy-peer-deps`** per nascondere conflitti di dipendenze: si risolvono o si documentano.
-7. **Migrazioni solo su destinazione autorizzata**, mai durante build, import o richieste. Niente `db:push` nel flusso standard.
-8. **Nessun push, deploy o pubblicazione** senza richiesta esplicita.
-9. **Verificare prima di affermare.** Versioni stabili e canali (`latest` vs `@rc`/`@canary`) si controllano al momento, non si assumono.
+## Path A — Machine setup
 
-## Percorso A — Setup macchina
+1. Choose where it runs (native / container / WSL) and record it.
+2. Inventory: git, node, package manager, editor, agent CLIs already present. Do not reinstall what exists.
+3. Install only what is missing; for every installation record the source, version, and date.
+4. Configure each client (Codex, Claude, OpenCode, Hermes) in the format it actually supports.
+5. Produce `environment-manifest.json` (template: `<TOOLKIT>/templates/environment-manifest.json.example`).
+6. Verify by reproducing: a second run must produce the same result.
 
-1. Scegli dove girare (nativo / container / WSL) e annotalo.
-2. Inventaria: git, node, package manager, editor, agent CLI già presenti. Non reinstallare ciò che esiste.
-3. Installa solo i mancanti; per ogni installazione registra fonte, versione, data.
-4. Configura i client (Codex, Claude, OpenCode, Hermes) nel formato che ciascuno supporta davvero.
-5. Produci `environment-manifest.json` (template: `<TOOLKIT>/templates/environment-manifest.json.example`).
-6. Verifica riproducendo: un secondo giro deve dare lo stesso risultato.
+## Path B — New project
 
-## Percorso B — Progetto nuovo
+Full sequence with commands: `references/bootstrap-nextjs.md`.
+Summary of the 7 steps:
 
-Sequenza completa con comandi: `references/bootstrap-nextjs.md`.
-Sintesi dei 7 passi:
+1. Inspect destination, instructions, clients, runtime, package manager, local changes.
+2. Write `PRODUCT.md` from the template (`<TOOLKIT>/templates/product.md.template`).
+3. Generate the official scaffold with `create-next-app` (stable version, checked), in a temporary directory if the destination is not empty.
+4. Install the core (Drizzle+Postgres, Zod, Pino, Vitest) and copy `templates/next/`, stripping the `.example` suffix.
+5. Install and route the relevant skills: only the ones needed, never `--all`.
+6. Generate documentation from the manifest (4 files in root + 5 in `docs/`), configure ESLint and the commands.
+7. Verify: build, lint, tests without credentials, and report the evidence.
 
-1. Ispeziona destinazione, istruzioni, client, runtime, package manager, modifiche locali.
-2. Scrivi `PRODUCT.md` dal template (`<TOOLKIT>/templates/product.md.template`).
-3. Genera lo scaffold ufficiale con `create-next-app` (versione stabile verificata), in directory temporanea se la destinazione non è vuota.
-4. Installa il core (Drizzle+Postgres, Zod, Pino, Vitest) e copia `templates/next/` togliendo il suffisso `.example`.
-5. Installa e instrada le skill pertinenti: solo quelle che servono, niente `--all`.
-6. Genera la documentazione dal manifest (4 file in root + 5 in `docs/`), configura ESLint e i comandi.
-7. Verifica: build, lint, test senza credenziali, e riporta l'evidenza.
+## Path C — Existing project
 
-## Percorso C — Progetto esistente
+1. Read-only diagnosis: real stack, commands that actually work, where the fragile points are.
+2. `PRODUCT.md` rebuilt from the facts in the code, not from intentions.
+3. Short plan with a decision per component (adopt / equivalent / reject).
+4. Apply in small batches, each one verifiable, without breaking what works.
+5. Measurable before/after comparison (lint, warnings, file size, timings).
+6. Written handoff if work remains open.
 
-1. Diagnosi read-only: stack reale, comandi funzionanti, dove sono i punti fragili.
-2. `PRODUCT.md` ricostruito dai fatti del codice, non dalle intenzioni.
-3. Piano breve con decisioni per componente (adottare / equivalente / scartare).
-4. Applica in lotti piccoli, ognuno verificabile, senza rompere ciò che funziona.
-5. Confronto prima/dopo misurabile (lint, warning, dimensione file, tempi).
-6. Handoff scritto se il lavoro resta aperto.
+Details: `references/existing-project.md`.
 
-Dettaglio: `references/existing-project.md`.
+## Default stack
 
-## Stack di default
+A reference decision, not a dogma: every deviation must be justified in `PRODUCT.md` and `docs/architecture.md`.
 
-Decisione di riferimento, non dogma: ogni scostamento va motivato in `PRODUCT.md` e `docs/architecture.md`.
-
-| Area | Default | Limite |
+| Area | Default | Limit |
 |---|---|---|
-| App | Next.js stabile, App Router, TS strict, Tailwind, ESLint, `src/`, `@/*` | preserva app e package manager esistenti |
-| Persistenza | Drizzle ORM + PostgreSQL (`pg`) | prodotto senza persistenza: si omette, motivando |
-| Validazione | Zod su env, input e risposte esterne | i tipi TS non validano a runtime |
-| Server | `server-only` su env, logger, db | segreti mai nel client |
-| Logging | Pino strutturato con redazione dei segreti noti | la redazione non copre i segreti scritti nei messaggi |
-| Test | Vitest su logica server, senza credenziali | DOM/E2E solo quando servono |
-| Qualità | preset Next/TS, controllo async tipizzato, limite 350 righe | i guard Drizzle non sostituiscono la review |
-| Agenti | `AGENTS.md` condiviso + bridge `CLAUDE.md` | preserva client, modello e autenticazione |
+| Application | stable Next.js, App Router, strict TS, Tailwind, ESLint, `src/`, `@/*` | preserve existing app and package manager |
+| Persistence | Drizzle ORM + PostgreSQL (`pg`) | a product without persistence omits it, with a stated reason |
+| Validation | Zod on env, inputs, external responses | TS types do not validate at runtime |
+| Server | `server-only` on env, logger, db | secrets never in the client |
+| Logging | structured Pino with redaction of known secrets | redaction does not cover secrets written into messages |
+| Tests | Vitest on server logic, no credentials | DOM/E2E only when needed |
+| Quality | Next/TS presets, typed async checks, 350-line limit | ORM guards do not replace review |
+| Agents | shared `AGENTS.md` + `CLAUDE.md` bridge | preserve client, model and authentication |
 
 ## Prompt catalog
 
-16 prompt pronti in `docs/prompts/` del repo locale. Mappa "quando usare quale": `references/prompts.md`.
+16 ready-made prompts in the toolkit's `docs/prompts/`. Map of "when to use which": `references/prompts.md`.
 
-## Strumenti citati dal toolkit
+## Tools cited by the toolkit
 
-Il toolkit cita strumenti esterni (Superpowers, Ponytail, Caveman, RTK, Context7, Graphify). Non assumere che esistano: mappa e sostituti in `references/tools-map.md`.
+The toolkit references external tools (Superpowers, Ponytail, Caveman, RTK, Context7, Graphify). Never assume they exist: map and substitutes in `references/tools-map.md`.
 
-## Anti-pattern
+## Anti-patterns
 
-- Scaffold dentro una directory già popolata senza merge controllato.
-- Documentazione generata con placeholder non riempiti o campi inutilizzati.
-- `CLAUDE.md` che duplica `AGENTS.md` invece di importarlo.
-- Skill installate "per sicurezza" senza che il prodotto le usi.
-- Test che passano solo perché richiedono un database reale non disponibile.
-- Review di sicurezza con report pubblici o scanner obbligatori a pagamento.
+- Scaffolding into a non-empty directory without a controlled merge.
+- Generated documentation with unfilled placeholders or unused fields.
+- `CLAUDE.md` duplicating `AGENTS.md` instead of importing it.
+- Skills installed "to be safe" that the product never uses.
+- Tests that pass only because they require an unavailable real database.
+- Security review with public reports or mandatory paid scanners.
 
-## Distribuzione multi-agente
+## Multi-agent distribution
 
-La stessa cartella funziona su ogni host che legge `SKILL.md` con frontmatter `name`/`description`.
-Path verificati su questo PC:
+The same folder works on every host that reads `SKILL.md` with `name`/`description` frontmatter.
 
 | Host | Path |
 |---|---|
@@ -127,11 +124,11 @@ Path verificati su questo PC:
 | Codex | `~/.codex/skills/groundwork` |
 | OpenCode | `~/.config/opencode/skills/groundwork` |
 
-Copia la directory nel path del client in uso; per più client usa `bash scripts/sync-skill.sh`
-dopo aver adattato la lista `TARGETS`. Riavvia la sessione dell'agente perché ricarichi.
+Copy the directory into the path of the client in use; for several clients run `bash scripts/sync-skill.sh`
+after adapting the `TARGETS` list. Restart the agent session so it reloads.
 
-Vincoli del formato: `name` minuscolo con trattini e **identico al nome della directory**, `description` breve (la usano per decidere se caricarla), niente path assoluti nelle reference se la skill deve restare portabile.
+Format constraints: `name` lowercase with hyphens and **identical to the directory name**, `description` short (hosts use it to decide whether to load the skill), and no absolute paths in the references if the skill must stay portable.
 
-## Verifica finale
+## Final check
 
-Prima di dichiarare finito: build verde, lint pulito, test eseguibili senza credenziali, documentazione senza placeholder, e un elenco onesto di ciò che resta aperto.
+Before declaring done: green build, clean lint, tests runnable without credentials, documentation without placeholders, and an honest list of what remains open.

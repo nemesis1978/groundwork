@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Format](https://img.shields.io/badge/format-SKILL.md-6E7681.svg)](SKILL.md)
 [![Hosts](https://img.shields.io/badge/hosts-5-34D399.svg)](#compatibility)
-[![Version](https://img.shields.io/badge/version-1.0.0-F59E0B.svg)](SKILL.md)
+[![Version](https://img.shields.io/badge/version-1.0.1-F59E0B.svg)](SKILL.md)
 
 ![Groundwork — a setup protocol for AI coding agents](assets/hero.svg)
 
@@ -87,6 +87,37 @@ With Hermes, directly from the registry:
 
 ```bash
 hermes skills install nemesis1978/groundwork
+```
+
+### One-liner per host
+
+| Host | Command |
+|---|---|
+| **Hermes** | `hermes skills install nemesis1978/groundwork` |
+| **Claude Code** | `git clone https://github.com/nemesis1978/groundwork.git ~/.claude/skills/groundwork` |
+| **Codex** | `git clone https://github.com/nemesis1978/groundwork.git ~/.codex/skills/groundwork` |
+| **OpenCode** | `git clone https://github.com/nemesis1978/groundwork.git ~/.config/opencode/skills/groundwork` |
+| **Codebuff / Freebuff** | `git clone https://github.com/nemesis1978/groundwork.git ~/.agents/skills/groundwork` |
+| **skills.sh CLI** | `npx skills add nemesis1978/groundwork` |
+
+### Let an agent install it for you
+
+Paste this into any agent with shell access — it resolves its own skills directory, so you do not need to know the path:
+
+```text
+Install the "groundwork" skill from https://github.com/nemesis1978/groundwork
+into the skills directory your runtime reads (~/.claude/skills, ~/.agents/skills,
+~/.codex/skills, or ~/.config/opencode/skills), as a folder named "groundwork".
+Verify that SKILL.md is readable, that its frontmatter name is "groundwork",
+and that the four files in references/ are present. Report the resolved absolute
+path and the checksum of SKILL.md. Do not modify any other skill or config.
+```
+
+To load it in the current session immediately, append:
+
+```text
+Then read SKILL.md and confirm the three paths (machine setup, new project,
+existing project) are present.
 ```
 
 For several hosts at once, edit `TARGETS` in [`scripts/sync-skill.sh`](scripts/sync-skill.sh) and run it. Restart the agent session afterwards — hosts read the skills directory at startup.
@@ -181,9 +212,9 @@ Deviations are allowed — they must be written down and justified in `PRODUCT.m
 
 ## Language
 
-`SKILL.md` and the reference files are written in **Italian**. Commands, paths, code blocks, and structure are language-neutral, and the `description` that triggers the skill is in English.
+All instructions are in **English**: the README, `SKILL.md`, and the four reference files. Commands, paths, and diagrams are language-neutral, and the short English `description` is what lets a host match the skill against a request.
 
-An English translation is a mechanical pass over the same files. It is not done yet because the primary user works in Italian, and a stale translation is worse than an honest note. PRs that translate `SKILL.md` and the four references are welcome — keep code blocks and file paths identical.
+Translations are welcome as pull requests — keep code blocks, file paths, and the rule numbering identical so the versions stay comparable line by line.
 
 ---
 
