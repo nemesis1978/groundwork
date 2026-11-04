@@ -239,6 +239,8 @@ git pull
 
 Keep local edits in a branch. If you change the rules, change `SKILL.md` in one place and re-sync — divergence between hosts is the main failure mode of a multi-agent setup.
 
+Version history: [CHANGELOG.md](CHANGELOG.md).
+
 ---
 
 ## Attribution
