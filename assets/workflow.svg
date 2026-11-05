@@ -1,66 +1,52 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="470" viewBox="0 0 1200 470" role="img" aria-label="Three paths: machine setup, new project, existing project">
-  <rect width="1200" height="470" fill="#0B1220"/>
-
-  <text x="64" y="58" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
-        font-size="26" font-weight="700" fill="#F8FAFC">Three paths, one protocol</text>
-  <text x="64" y="86" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
-        font-size="15" fill="#94A3B8">The agent picks the path from what you ask. It never runs all three.</text>
-
-  <!-- Card 1 -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="590" viewBox="0 0 1200 590" role="img" aria-label="Step 0 reads the project state, then three paths: machine setup, new project, existing project">
+  <rect width="1200" height="590" fill="#0B1220"/>
+<text x="64" y="58" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="26" font-weight="700" fill="#F8FAFC">One state check, then three paths</text>
+<text x="64" y="86" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15" font-weight="400" fill="#94A3B8">Step 0 reads what the directory already proves. The agent then picks one path — it never runs all three.</text>
+  <!-- step 0 band -->
+  <rect x="64" y="108" width="1072" height="64" rx="12" fill="#16233D" stroke="#F59E0B" stroke-width="1.5"/>
+<text x="88" y="132" font-family="ui-monospace, Consolas, monospace" font-size="12" font-weight="400" fill="#F59E0B">STEP 0 — BEFORE ANY PATH</text>
+<text x="88" y="156" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15" font-weight="400" fill="#E2E8F0">Read the project state and declare it with evidence: state &lt;name&gt; — evidence &lt;files, commands&gt;</text>
+<text x="1112" y="132" font-family="ui-monospace, Consolas, monospace" font-size="11" font-weight="400" fill="#94A3B8" text-anchor="end">empty · idea · scaffold · in progress · broken</text>
+<text x="1112" y="152" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#64748B" text-anchor="end">never asked when a command can answer</text>
   <g>
-    <rect x="64" y="116" width="336" height="300" rx="14" fill="#111C33" stroke="#26375C"/>
-    <rect x="64" y="116" width="336" height="6" rx="3" fill="#38BDF8"/>
-    <text x="90" y="162" font-family="ui-monospace, Consolas, monospace" font-size="13" fill="#38BDF8">PATH A</text>
-    <text x="90" y="192" font-family="ui-sans-serif, 'Segoe UI', Arial, sans-serif" font-size="24" font-weight="700" fill="#F8FAFC">Machine setup</text>
-
-    <g font-family="ui-sans-serif, 'Segoe UI', Arial, sans-serif" font-size="14" fill="#CBD5E1">
-      <text x="90" y="228">1  Choose where it runs</text>
-      <text x="90" y="256">2  Inventory what exists</text>
-      <text x="90" y="284">3  Install only what is missing</text>
-      <text x="90" y="312">4  Configure each agent host</text>
-      <text x="90" y="340">5  Emit environment manifest</text>
-      <text x="90" y="368">6  Reproduce to verify</text>
-    </g>
-    <text x="90" y="400" font-family="ui-monospace, Consolas, monospace" font-size="12" fill="#64748B">no reinstall, no guessing</text>
+    <rect x="64" y="196" width="336" height="334" rx="14" fill="#111C33" stroke="#26375C"/>
+    <rect x="64" y="196" width="336" height="6" rx="3" fill="#38BDF8"/>
+<text x="90" y="242" font-family="ui-monospace, Consolas, monospace" font-size="13" font-weight="400" fill="#38BDF8">PATH A</text>
+<text x="90" y="272" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="24" font-weight="700" fill="#F8FAFC">Machine setup</text>
+    <text x="90" y="308" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#CBD5E1">1  Choose where it runs</text>
+    <text x="90" y="334" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#CBD5E1">2  Inventory what exists</text>
+    <text x="90" y="360" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#CBD5E1">3  Install only what is missing</text>
+    <text x="90" y="386" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#CBD5E1">4  Configure each agent host</text>
+    <text x="90" y="412" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#CBD5E1">5  Emit environment manifest</text>
+    <text x="90" y="438" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#CBD5E1">6  Reproduce to verify</text>
+<text x="90" y="506" font-family="ui-monospace, Consolas, monospace" font-size="12" font-weight="400" fill="#64748B">no reinstall, no guessing</text>
   </g>
-
-  <!-- Card 2 -->
   <g>
-    <rect x="432" y="116" width="336" height="300" rx="14" fill="#111C33" stroke="#26375C"/>
-    <rect x="432" y="116" width="336" height="6" rx="3" fill="#F59E0B"/>
-    <text x="458" y="162" font-family="ui-monospace, Consolas, monospace" font-size="13" fill="#F59E0B">PATH B</text>
-    <text x="458" y="192" font-family="ui-sans-serif, 'Segoe UI', Arial, sans-serif" font-size="24" font-weight="700" fill="#F8FAFC">New project</text>
-
-    <g font-family="ui-sans-serif, 'Segoe UI', Arial, sans-serif" font-size="14" fill="#CBD5E1">
-      <text x="458" y="228">1  Inspect destination</text>
-      <text x="458" y="256">2  Write PRODUCT.md first</text>
-      <text x="458" y="284">3  Official scaffold</text>
-      <text x="458" y="312">4  Core: Drizzle, Zod, Pino</text>
-      <text x="458" y="340">5  Route only needed skills</text>
-      <text x="458" y="368">6  Docs from the manifest</text>
-      <text x="458" y="394">7  Verify and report evidence</text>
-    </g>
+    <rect x="432" y="196" width="336" height="334" rx="14" fill="#111C33" stroke="#26375C"/>
+    <rect x="432" y="196" width="336" height="6" rx="3" fill="#F59E0B"/>
+<text x="458" y="242" font-family="ui-monospace, Consolas, monospace" font-size="13" font-weight="400" fill="#F59E0B">PATH B</text>
+<text x="458" y="272" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="24" font-weight="700" fill="#F8FAFC">New project</text>
+    <text x="458" y="308" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#CBD5E1">1  Inspect destination</text>
+    <text x="458" y="334" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#CBD5E1">2  Write PRODUCT.md first</text>
+    <text x="458" y="360" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#CBD5E1">3  Official scaffold</text>
+    <text x="458" y="386" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#CBD5E1">4  Core: Drizzle, Zod, Pino</text>
+    <text x="458" y="412" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#CBD5E1">5  Route only needed skills</text>
+    <text x="458" y="438" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#CBD5E1">6  Docs from the manifest</text>
+    <text x="458" y="464" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#CBD5E1">7  Verify and report evidence</text>
+    <text x="458" y="490" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#CBD5E1">8  Write docs/HANDOFF.md</text>
   </g>
-
-  <!-- Card 3 -->
   <g>
-    <rect x="800" y="116" width="336" height="300" rx="14" fill="#111C33" stroke="#26375C"/>
-    <rect x="800" y="116" width="336" height="6" rx="3" fill="#34D399"/>
-    <text x="826" y="162" font-family="ui-monospace, Consolas, monospace" font-size="13" fill="#34D399">PATH C</text>
-    <text x="826" y="192" font-family="ui-sans-serif, 'Segoe UI', Arial, sans-serif" font-size="24" font-weight="700" fill="#F8FAFC">Existing project</text>
-
-    <g font-family="ui-sans-serif, 'Segoe UI', Arial, sans-serif" font-size="14" fill="#CBD5E1">
-      <text x="826" y="228">1  Read-only diagnosis</text>
-      <text x="826" y="256">2  PRODUCT.md from facts</text>
-      <text x="826" y="284">3  Decision per component</text>
-      <text x="826" y="312">4  Small verified batches</text>
-      <text x="826" y="340">5  Before / after metrics</text>
-      <text x="826" y="368">6  Written handoff</text>
-    </g>
-    <text x="826" y="400" font-family="ui-monospace, Consolas, monospace" font-size="12" fill="#64748B">never migrate the stack</text>
+    <rect x="800" y="196" width="336" height="334" rx="14" fill="#111C33" stroke="#26375C"/>
+    <rect x="800" y="196" width="336" height="6" rx="3" fill="#34D399"/>
+<text x="826" y="242" font-family="ui-monospace, Consolas, monospace" font-size="13" font-weight="400" fill="#34D399">PATH C</text>
+<text x="826" y="272" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="24" font-weight="700" fill="#F8FAFC">Existing project</text>
+    <text x="826" y="308" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#CBD5E1">1  Read-only diagnosis</text>
+    <text x="826" y="334" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#CBD5E1">2  PRODUCT.md from facts</text>
+    <text x="826" y="360" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#CBD5E1">3  Decision per component</text>
+    <text x="826" y="386" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#CBD5E1">4  Small verified batches</text>
+    <text x="826" y="412" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#CBD5E1">5  Before / after metrics</text>
+    <text x="826" y="438" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#CBD5E1">6  HANDOFF.md, same contract</text>
+<text x="826" y="506" font-family="ui-monospace, Consolas, monospace" font-size="12" font-weight="400" fill="#64748B">never migrate the stack</text>
   </g>
-
-  <text x="64" y="448" font-family="ui-monospace, Consolas, monospace" font-size="12" fill="#475569">
-    product before foundation · proportional adoption · evidence over claims
-  </text>
+<text x="64" y="562" font-family="ui-monospace, Consolas, monospace" font-size="12" font-weight="400" fill="#475569">product before foundation · proportional adoption · evidence over claims</text>
 </svg>
