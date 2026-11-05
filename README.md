@@ -32,7 +32,7 @@ Groundwork is a fixed set of answers to those six situations. It does not add ca
 
 ---
 
-## Three paths, one protocol
+## One state check, then three paths
 
 ![Step 0 reads the project state, then three paths: machine setup, new project, existing project](assets/workflow.svg)
 
