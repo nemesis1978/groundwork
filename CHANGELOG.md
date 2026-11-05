@@ -8,6 +8,18 @@ The version in `SKILL.md` is the authoritative one.
 
 ## [Unreleased]
 
+## [1.0.3] - 2026-11-05
+
+### Changed
+
+- Path B step 7 and the final check now require a **clean `typecheck`** alongside build, lint and tests: all three can pass while `tsc` fails on a broken import.
+- Path B step 4 names `clsx` and `tailwind-merge`: `templates/next/src/lib/utils.ts` imports them and an `--empty` scaffold does not include them.
+- Path B step 6 warns that `AGENTS.md` may be generated and protected by the framework (Next 16 regenerates a `nextjs-agent-rules` block): append, never replace.
+
+### Added
+
+- `references/bootstrap-nextjs.md`: "Traps confirmed on a real run" — five concrete failures found while bootstrapping a real project on Next 16.4.5 / Node 26.12.1, including the `@types/node` peer conflict with `vitest@5` and the missing `server-only`.
+
 ## [1.0.2] - 2026-11-05
 
 ### Added
@@ -47,7 +59,8 @@ The version in `SKILL.md` is the authoritative one.
 - `references/tools-map.md` — 23 external tools mapped to host equivalents and substitutes.
 - `scripts/sync-skill.sh` — copy the skill into several agent hosts.
 
-[Unreleased]: https://github.com/nemesis1978/groundwork/compare/v1.0.2...HEAD
+[Unreleased]: https://github.com/nemesis1978/groundwork/compare/v1.0.3...HEAD
+[1.0.3]: https://github.com/nemesis1978/groundwork/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/nemesis1978/groundwork/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/nemesis1978/groundwork/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/nemesis1978/groundwork/releases/tag/v1.0.0

@@ -1,6 +1,6 @@
 ---
 name: groundwork
-version: 1.0.2
+version: 1.0.3
 author: Egix
 license: MIT
 description: Use when setting up a machine or bootstrapping a project.
@@ -64,10 +64,10 @@ Summary of the 7 steps:
 1. Inspect destination, instructions, clients, runtime, package manager, local changes.
 2. Write `PRODUCT.md` from the template (`<TOOLKIT>/templates/product.md.template`).
 3. Generate the official scaffold with `create-next-app` (stable version, checked), in a temporary directory if the destination is not empty.
-4. Install the core (Drizzle+Postgres, Zod, Pino, Vitest) and copy `templates/next/`, stripping the `.example` suffix.
+4. Install the core (Drizzle+Postgres, Zod, Pino, Vitest) plus `clsx` and `tailwind-merge` — `templates/next/src/lib/utils.ts` imports them and the scaffold does not include them — then copy `templates/next/`, stripping the `.example` suffix.
 5. Install and route the relevant skills: only the ones needed, never `--all`.
-6. Generate documentation from the manifest (4 files in root + 5 in `docs/`), configure ESLint and the commands.
-7. Verify: build, lint, tests without credentials, and report the evidence.
+6. Generate documentation from the manifest (4 files in root + 5 in `docs/`), configure ESLint and the commands. `AGENTS.md` may be generated and protected by the framework (Next 16 writes a `nextjs-agent-rules` block that `next dev` regenerates): append to it, never replace it, and expect an approval prompt on protected instruction files.
+7. Verify: build, lint, **typecheck**, tests without credentials, and report the evidence.
 
 ## Path C — Existing project
 
@@ -131,4 +131,4 @@ Format constraints: `name` lowercase with hyphens and **identical to the directo
 
 ## Final check
 
-Before declaring done: green build, clean lint, tests runnable without credentials, documentation without placeholders, and an honest list of what remains open.
+Before declaring done: green build, clean lint, **clean typecheck**, tests runnable without credentials, documentation without placeholders, and an honest list of what remains open.
