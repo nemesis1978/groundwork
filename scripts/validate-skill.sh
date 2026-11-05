@@ -77,5 +77,18 @@ else
   fail "CHANGELOG.md missing or without [Unreleased] section"
 fi
 
+# 11. Project state step and handoff
+if grep -q '^## Step 0' "$DIR/SKILL.md"; then
+  ok "step 0 (project state) present"
+else
+  fail "step 0 (read the project state) missing from SKILL.md"
+fi
+
+if [ -f "$DIR/references/handoff.md" ] && grep -q 'references/handoff.md' "$DIR/SKILL.md"; then
+  ok "handoff reference present and cited"
+else
+  fail "references/handoff.md missing or never cited from SKILL.md"
+fi
+
 echo
 if [ "$FAIL" -eq 0 ]; then echo "PASS"; exit 0; else echo "FAILED ($FAIL)"; exit 1; fi

@@ -8,6 +8,20 @@ The version in `SKILL.md` is the authoritative one.
 
 ## [Unreleased]
 
+## [1.0.4] - 2026-11-05
+
+### Added
+
+- **Step 0 — Read the project state first**, before every path: three commands, one declared state with its evidence, and the rule that the skill never asks what the directory can prove. Five states (empty / idea / scaffold / in progress / broken) mapped to the path that follows.
+- `references/handoff.md` — the handoff contract: where the file lives, what it must answer, a template, how it differs from `PRODUCT.md` / `SPEC.md` / `BUILD_PHASES.md` / `PROJECT_STATE.md`, and the two symptoms of a wrong handoff.
+- Path B step 8: write `docs/HANDOFF.md` before declaring the bootstrap done.
+- Validator check 11: Step 0 present, handoff reference present and cited.
+
+### Changed
+
+- Path C step 6 now points at the handoff contract instead of the bare phrase "written handoff".
+- Final check requires `docs/HANDOFF.md` as part of being done.
+
 ## [1.0.3] - 2026-11-05
 
 ### Changed
@@ -59,7 +73,8 @@ The version in `SKILL.md` is the authoritative one.
 - `references/tools-map.md` — 23 external tools mapped to host equivalents and substitutes.
 - `scripts/sync-skill.sh` — copy the skill into several agent hosts.
 
-[Unreleased]: https://github.com/nemesis1978/groundwork/compare/v1.0.3...HEAD
+[Unreleased]: https://github.com/nemesis1978/groundwork/compare/v1.0.4...HEAD
+[1.0.4]: https://github.com/nemesis1978/groundwork/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/nemesis1978/groundwork/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/nemesis1978/groundwork/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/nemesis1978/groundwork/compare/v1.0.0...v1.0.1

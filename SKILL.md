@@ -1,6 +1,6 @@
 ---
 name: groundwork
-version: 1.0.3
+version: 1.0.4
 author: Egix
 license: MIT
 description: Use when setting up a machine or bootstrapping a project.
@@ -47,6 +47,30 @@ Do not use it for focused coding tasks: this skill sets up the environment and t
 8. **No push, deploy, or publish** without an explicit request.
 9. **Verify before asserting.** Stable versions and channels (`latest` vs `@rc` / `@canary`) are checked at execution time, never assumed.
 
+## Step 0 — Read the project state first
+
+Before any path, look. Do not ask what the directory can answer.
+
+```bash
+ls -a                                                   # code, docs, config
+git status --short                                      # tracked, uncommitted, or no repository at all
+ls PRODUCT.md docs/SPEC.md docs/BUILD_PHASES.md docs/HANDOFF.md 2>/dev/null
+```
+
+Declare one state, with evidence: `State: <state> — evidence: <files and commands>`.
+
+| State | Recognised by | Where it goes |
+|---|---|---|
+| empty | no code, no documents | Path B |
+| idea | `PRODUCT.md` or notes, no code | Path B, then `phased-build` phase C |
+| scaffold | builds, but no `SPEC.md` / `BUILD_PHASES.md` | `phased-build` phase C |
+| in progress | SPEC and BUILD_PHASES exist, phases not all `PASS` | `phased-build` phase E, from `HANDOFF.md` |
+| broken | does not build, missing dependencies, no git | Path C first |
+
+Ask the user only when the evidence contradicts itself: two documents describing different products, a `HANDOFF.md` naming files that no longer exist, a build that passes in one directory and fails in another. Never ask what a command can prove.
+
+Reading the state is not a diagnosis: it costs four commands and prevents building on the wrong directory.
+
 ## Path A — Machine setup
 
 1. Choose where it runs (native / container / WSL) and record it.
@@ -59,7 +83,7 @@ Do not use it for focused coding tasks: this skill sets up the environment and t
 ## Path B — New project
 
 Full sequence with commands: `references/bootstrap-nextjs.md`.
-Summary of the 7 steps:
+Summary of the 8 steps:
 
 1. Inspect destination, instructions, clients, runtime, package manager, local changes.
 2. Write `PRODUCT.md` from the template (`<TOOLKIT>/templates/product.md.template`).
@@ -68,6 +92,7 @@ Summary of the 7 steps:
 5. Install and route the relevant skills: only the ones needed, never `--all`.
 6. Generate documentation from the manifest (4 files in root + 5 in `docs/`), configure ESLint and the commands. `AGENTS.md` may be generated and protected by the framework (Next 16 writes a `nextjs-agent-rules` block that `next dev` regenerates): append to it, never replace it, and expect an approval prompt on protected instruction files.
 7. Verify: build, lint, **typecheck**, tests without credentials, and report the evidence.
+8. Write `docs/HANDOFF.md` (`references/handoff.md`): what exists, what was verified with which command, what is still open. A scaffold without a handoff forces the next session to start from zero.
 
 ## Path C — Existing project
 
@@ -76,7 +101,7 @@ Summary of the 7 steps:
 3. Short plan with a decision per component (adopt / equivalent / reject).
 4. Apply in small batches, each one verifiable, without breaking what works.
 5. Measurable before/after comparison (lint, warnings, file size, timings).
-6. Written handoff if work remains open.
+6. `docs/HANDOFF.md` if work remains open — same format as the bootstrap path (`references/handoff.md`).
 
 Details: `references/existing-project.md`.
 
@@ -131,4 +156,4 @@ Format constraints: `name` lowercase with hyphens and **identical to the directo
 
 ## Final check
 
-Before declaring done: green build, clean lint, **clean typecheck**, tests runnable without credentials, documentation without placeholders, and an honest list of what remains open.
+Before declaring done: declared project state, green build, clean lint, **clean typecheck**, tests runnable without credentials, documentation without placeholders, `docs/HANDOFF.md` written, and an honest list of what remains open.
