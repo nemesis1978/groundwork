@@ -34,7 +34,7 @@ Groundwork is a fixed set of answers to those six situations. It does not add ca
 
 ## Three paths, one protocol
 
-![Three paths: machine setup, new project, existing project](assets/workflow.svg)
+![Step 0 reads the project state, then three paths: machine setup, new project, existing project](assets/workflow.svg)
 
 The agent chooses the path from the request. It never runs all three.
 
