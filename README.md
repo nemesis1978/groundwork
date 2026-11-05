@@ -175,7 +175,7 @@ scripts/sync-skill.sh            copy the skill into several agent hosts
 assets/                          the diagrams in this README
 ```
 
-Approximate size of the instruction layer: **1 400 lines**. A `SKILL.md` of ~130 lines loads first; references are read only when the chosen path requires them.
+Approximate size of the instruction layer: **460 lines** across 6 files, measured with `wc -l`. A `SKILL.md` of ~160 lines loads first; references are read only when the chosen path requires them.
 
 ---
 
