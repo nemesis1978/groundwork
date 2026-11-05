@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Format](https://img.shields.io/badge/format-SKILL.md-6E7681.svg)](SKILL.md)
 [![Hosts](https://img.shields.io/badge/hosts-5-34D399.svg)](#compatibility)
-[![Version](https://img.shields.io/badge/version-1.0.1-F59E0B.svg)](SKILL.md)
+[![Version](https://img.shields.io/badge/version-1.0.4-F59E0B.svg)](SKILL.md)
 
 ![Groundwork — a setup protocol for AI coding agents](assets/hero.svg)
 
@@ -116,8 +116,8 @@ path and the checksum of SKILL.md. Do not modify any other skill or config.
 To load it in the current session immediately, append:
 
 ```text
-Then read SKILL.md and confirm the three paths (machine setup, new project,
-existing project) are present.
+Then read SKILL.md and confirm step 0 (read the project state) and the three
+paths (machine setup, new project, existing project) are present.
 ```
 
 For several hosts at once, edit `TARGETS` in [`scripts/sync-skill.sh`](scripts/sync-skill.sh) and run it. Restart the agent session afterwards — hosts read the skills directory at startup.
@@ -144,12 +144,14 @@ You do not invoke it. The `description` field is what makes an agent load it whe
 
 **What happens with Groundwork:**
 
+0. **Before anything:** it reads the directory — `ls -a`, `git status --short`, presence of `PRODUCT.md` / `docs/SPEC.md` / `docs/BUILD_PHASES.md` / `docs/HANDOFF.md` — and declares one state with its evidence: *empty*, *idea*, *scaffold*, *in progress*, or *broken*. It does not ask what a command can prove.
 1. It asks for the product facts it cannot infer — audience, flows, MVP boundary — and writes `PRODUCT.md`. Assumptions are labeled; unknown external information stays open instead of being invented.
 2. It checks current stable versions and scaffold flags instead of copying an old command.
 3. It generates the official scaffold, then adds only the core the product needs.
 4. It installs only the skills the project will actually use.
 5. It generates the documentation manifest, configures lint and commands, and **runs the build**.
 6. It reports what passed, what did not, and what is still open.
+7. It writes `docs/HANDOFF.md` — verified state, open work in order, traps already paid for — so the next session resumes instead of restarting.
 
 **What it refuses:**
 
@@ -163,9 +165,10 @@ You do not invoke it. The `description` field is what makes an agent load it whe
 ## What's inside
 
 ```
-SKILL.md                         triggers, 9 rules, 3 paths, default stack, anti-patterns
-references/bootstrap-nextjs.md   7 steps with real commands and flags
+SKILL.md                         step 0, triggers, 9 rules, 3 paths, default stack, anti-patterns
+references/bootstrap-nextjs.md   8 steps with real commands and flags
 references/existing-project.md   diagnose → plan → batches → before/after metrics
+references/handoff.md            the handoff contract shared with phased-build-orchestrator
 references/prompts.md            the 16 upstream prompts, mapped to "when / what it produces"
 references/tools-map.md          23 external tools → what exists in a given host, what to substitute
 scripts/sync-skill.sh            copy the skill into several agent hosts

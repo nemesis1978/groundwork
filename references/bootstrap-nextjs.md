@@ -73,6 +73,7 @@ Portable memory contract: native memory or a short index into canonical document
 - Documentation with no placeholders.
 - Evidence reported (commands + real output), not assertions.
 - An explicit list of what remains open.
+- `docs/HANDOFF.md` written (`references/handoff.md`): verified state with commands and results, open work in order, traps already paid for, one next action. A scaffold without a handoff forces the next session to start from zero.
 
 ## Traps confirmed on a real run (2026-11-05, Next 16.4.5 / Node 26.12.1)
 
