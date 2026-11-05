@@ -8,8 +8,11 @@ The version in `SKILL.md` is the authoritative one.
 
 ## [Unreleased]
 
+## [1.0.2] - 2026-11-05
+
 ### Added
 
+- Severity scale in `references/existing-project.md`: `BLOCKER`, `HIGH`, `MEDIUM`, `LOW`, `INFO`, each assigned from the observable consequence rather than from a feeling, plus five rules that make two independent diagnoses comparable. Path C now requires a level on every finding.
 - `CONTRIBUTING.md`: two-lane contribution model (fast lane for corrections and translations, slow lane for rule changes), seven invariants, and a definition of done.
 - `scripts/validate-skill.sh`: executable format contract — checks `name` against the directory, referenced and orphaned files, absolute paths, the nine-rule count, `SKILL.md` length, obvious secrets, and the `[Unreleased]` section.
 
@@ -44,6 +47,7 @@ The version in `SKILL.md` is the authoritative one.
 - `references/tools-map.md` — 23 external tools mapped to host equivalents and substitutes.
 - `scripts/sync-skill.sh` — copy the skill into several agent hosts.
 
-[Unreleased]: https://github.com/nemesis1978/groundwork/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/nemesis1978/groundwork/compare/v1.0.2...HEAD
+[1.0.2]: https://github.com/nemesis1978/groundwork/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/nemesis1978/groundwork/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/nemesis1978/groundwork/releases/tag/v1.0.0

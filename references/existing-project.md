@@ -47,6 +47,26 @@ Minimum metrics to report: lint warning count, files over the limit, passing tes
 
 If work remains open: objective, real state, decisions with reasons, files touched, blockers, executable next steps, constraints not to break.
 
+## Severity scale
+
+Every finding gets one level, assigned from the **observable consequence**, not from a feeling. Two agents must reach the same level for the same finding — otherwise two diagnoses cannot be compared.
+
+| Level | Test | Typical cases |
+|---|---|---|
+| **BLOCKER** | the project cannot run, or cannot be rebuilt from scratch | syntax error, missing credential, a dependency that no longer installs |
+| **HIGH** | silent data loss, secret exposure, or no way back from a change | secrets reachable in a copy or a backup, secrets committed, **no version control**, destructive script without backup |
+| **MEDIUM** | a defect that bites within weeks, or documentation contradicting the code | deprecated API, docstring naming an output path that is not the one written, core logic without tests, unpinned dependencies |
+| **LOW** | friction, not failure | file permissions, duplicated folders, dead code |
+| **INFO** | observation, no action required | project idle for N days, size on disk |
+
+Rules that make the scale usable:
+
+- **A finding you cannot reproduce is `INFO`, never `HIGH`.** State what you ran.
+- **Absent version control is always `HIGH`**: without it every other fix is irreversible, so it outranks most defects.
+- **Every level carries its evidence line** — file, command, or output. A level without evidence is an opinion.
+- Do not invent intermediate levels ("high-ish"): four levels plus INFO is the whole scale.
+- When unsure between two levels, choose the lower one and say what would raise it.
+
 ## Typical mistakes in this phase
 
 - Migrating the stack "while we are here".

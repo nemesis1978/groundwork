@@ -1,6 +1,6 @@
 ---
 name: groundwork
-version: 1.0.1
+version: 1.0.2
 author: Egix
 license: MIT
 description: Use when setting up a machine or bootstrapping a project.
@@ -71,7 +71,7 @@ Summary of the 7 steps:
 
 ## Path C — Existing project
 
-1. Read-only diagnosis: real stack, commands that actually work, where the fragile points are.
+1. Read-only diagnosis: real stack, commands that actually work, where the fragile points are. Every finding gets a severity level (`references/existing-project.md`).
 2. `PRODUCT.md` rebuilt from the facts in the code, not from intentions.
 3. Short plan with a decision per component (adopt / equivalent / reject).
 4. Apply in small batches, each one verifiable, without breaking what works.
